@@ -10,6 +10,7 @@
 			this.me = {};
 
 			this.battlePaused = false;
+			this.autoTimerActivated = false;
 
 			this.isSideRoom = Dex.prefs('rightpanelbattles');
 
@@ -47,7 +48,6 @@
 			this.battle.startCallback = function () { self.updateControls(); };
 			this.battle.stagnateCallback = function () { self.updateControls(); };
 
-			if (Dex.prefs('autotimer')) this.setTimer('on');
 			this.battle.play();
 		},
 		events: {
@@ -961,6 +961,12 @@
 				this.side = '';
 				return;
 			}
+
+			if (!this.autoTimerActivated && Storage.prefs('autotimer')) {
+				this.setTimer('on');
+				this.autoTimerActivated = true;
+			}
+
 			request.requestType = 'move';
 			if (request.forceSwitch) {
 				request.requestType = 'switch';
@@ -1472,7 +1478,10 @@
 		toggleAutoTimer: function (e) {
 			var autoTimer = !!e.currentTarget.checked;
 			Storage.prefs('autotimer', autoTimer);
-			if (autoTimer) this.room.setTimer('on');
+			if (autoTimer) {
+				this.room.setTimer('on');
+				this.room.autoTimerActivated = true;
+			}
 		},
 		toggleRightPanelBattles: function (e) {
 			Storage.prefs('rightpanelbattles', !!e.currentTarget.checked);
