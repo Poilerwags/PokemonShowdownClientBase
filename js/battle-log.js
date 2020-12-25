@@ -820,11 +820,18 @@ attribs:['src',"https://open.spotify.com/embed/track/"+songId,'width','300','hei
 
 var _src2=getAttrib('src')||'';
 
-var videoId=((_$exec2=/(?:\?v=|\/embed\/)([A-Za-z0-9_]+)/.exec(_src2))==null?void 0:_$exec2[1])||_src2;
+var width='320';
+var height='200';
+if(window.innerWidth>=400){
+width='400';
+height='225';
+}
+var videoId=(_$exec2=/(?:\?v=|\/embed\/)([A-Za-z0-9_\-]+)/.exec(_src2))==null?void 0:_$exec2[1];
+if(!videoId)return{tagName:'img',attribs:['alt',"invalid src for <youtube>"]};
 
 return{
 tagName:'iframe',
-attribs:['width','320','height','180','src',"https://www.youtube.com/embed/"+videoId,'frameborder','0','allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture','allowfullscreen','allowfullscreen']};
+attribs:['width',width,'height',height,'src',"https://www.youtube.com/embed/"+videoId,'frameborder','0','allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture','allowfullscreen','allowfullscreen']};
 
 }else if(tagName==='psicon'){
 
