@@ -25,13 +25,13 @@ Packaging for Windows
 
 2. Rename `nw.exe` to `pokemonshowdown.exe`
 
-3. Edit `pokemonshowdown.exe` with [Resource Hacker][3], and replace the node-webkit icon with`icons/pokemonshowdown.ico`
+3. Edit `pokemonshowdown.exe` with [Resource Hacker][3] or [Resource Cracker](https://www.pelock.com/products/resource-cracker), and replace the node-webkit icon with`icons/pokemonshowdown.ico`
 
 4. You may need to update `pokemonshowdown.nsi` if the file layout has changed; refer to `make-nsis-script.js`
 
 5. Using [NSIS][4], build `pokemonshowdown.nsi`
 
-  [3]: http://www.angusj.com/resourcehacker/
+  [3]: http://www.angusj.com/resourcehacker/ or [Resource Cracker](https://www.pelock.com/products/resource-cracker)
   [4]: http://nsis.sourceforge.net/
 
 Packaging for OS X
